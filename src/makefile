@@ -14,9 +14,6 @@ TEST_OBJS  := main.o $(NEW).o
 %.o: %.cpp
 	$(CC) $(CFLAGS) -c $< -o $@
 	
-test_MMult.x: $(TEST_OBJS) parameters.hpp
-	$(LINKER) $(TEST_OBJS) $(LDFLAGS) \
-        $(BLAS_LIB) -o $(TEST_BIN) $@ 
 
 run:
 	make test_MMult.x
@@ -27,6 +24,10 @@ run:
 	cp output_$(OLD).m output_old.m
 	cp output_$(NEW).m output_new.m
 	python PlotAll.py
+
+test_MMult.x: $(TEST_OBJS) parameters.hpp
+	$(LINKER) $(TEST_OBJS) $(LDFLAGS) \
+        $(BLAS_LIB) -o $(TEST_BIN) $@ 
 
 clean:
 	rm -f *.o *~ core *.x output*.m 
