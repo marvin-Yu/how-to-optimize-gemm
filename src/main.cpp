@@ -5,8 +5,6 @@
 #include "parameters.hpp"
 #include "util.hpp"
 
-#define GHz_of_processor 2.0
-
 template <typename T>
 void MY_MMult(int, int, int, const T *, int, const T *, int, T *, int);
 
@@ -37,7 +35,7 @@ void test()
     n = (N == -1 ? p : N);
     k = (K == -1 ? p : K);
 
-    gflops = GHz_of_processor * m * n * k * 1.0e-09;
+    gflops = 2 * m * n * k * 1.0e-09;
 
     lda = (LDA == -1 ? m : LDA);
     ldb = (LDB == -1 ? k : LDB);
@@ -98,8 +96,8 @@ void test()
 
 int main()
 {
-  // test<double>();
-  test<float>();
+  test<double>();
+  // test<float>();
 
   return 0;
 }
